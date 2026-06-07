@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Inscription</h2>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+  <div class="success" *ngIf="success">{{ success }}</div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" required />
+    </div>
+
+    <div class="field">
+      <label>Mot de passe</label>
+      <input type="password" [(ngModel)]="password" name="password" required />
+      <small>Min 8 caractères, 1 majuscule, 1 chiffre, 1 caractère spécial</small>
+    </div>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Inscription...' : 'S\'inscrire' }}
+    </button>
+  </form>
+
+  <p>Déjà un compte ? <a routerLink="/login">Se connecter</a></p>
+</div>

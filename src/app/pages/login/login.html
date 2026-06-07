@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Connexion</h2>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" required />
+    </div>
+
+    <div class="field">
+      <label>Mot de passe</label>
+      <input type="password" [(ngModel)]="password" name="password" required />
+    </div>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Connexion...' : 'Se connecter' }}
+    </button>
+  </form>
+
+  <p>Pas encore de compte ? <a routerLink="/register">S'inscrire</a></p>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="header">
+    <h2>Mon Profil</h2>
+    <button class="logout" (click)="onLogout()">Se déconnecter</button>
+  </div>
+
+  <div class="info" *ngIf="user">
+    <p><strong>Email :</strong> {{ user.email }}</p>
+    <p><strong>Rôle :</strong> {{ user.role }}</p>
+  </div>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+  <div class="success" *ngIf="success">{{ success }}</div>
+
+  <form (ngSubmit)="onUpdate()">
+    <div class="field">
+      <label>Prénom</label>
+      <input type="text" [(ngModel)]="form.first_name" name="first_name" />
+    </div>
+    <div class="field">
+      <label>Nom</label>
+      <input type="text" [(ngModel)]="form.last_name" name="last_name" />
+    </div>
+    <div class="field">
+      <label>Téléphone</label>
+      <input type="text" [(ngModel)]="form.phone" name="phone" />
+    </div>
+    <div class="field">
+      <label>Adresse</label>
+      <input type="text" [(ngModel)]="form.address" name="address" />
+    </div>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Mise à jour...' : 'Enregistrer' }}
+    </button>
+  </form>
+</div>
