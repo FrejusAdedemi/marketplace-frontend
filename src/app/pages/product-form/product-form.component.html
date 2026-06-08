@@ -1,0 +1,54 @@
+<section class="product-form">
+  <h1>Créer un produit</h1>
+
+  <form (ngSubmit)="submit()">
+    <input
+      type="text"
+      placeholder="Nom du produit"
+      [(ngModel)]="product.name"
+      name="name"
+      required
+    />
+
+    <textarea
+      placeholder="Description"
+      [(ngModel)]="product.description"
+      name="description"
+      required
+    ></textarea>
+
+    <input
+      type="number"
+      placeholder="Prix"
+      [(ngModel)]="product.price"
+      name="price"
+      required
+    />
+
+    <input
+      type="text"
+      placeholder="Catégorie"
+      [(ngModel)]="product.category"
+      name="category"
+      required
+    />
+
+    <input
+      type="text"
+      placeholder="Images séparées par des virgules"
+      [(ngModel)]="product.images"
+      name="images"
+    />
+
+    <textarea
+      placeholder='Attributs JSON ex: {"couleur":"noir","taille":"M"}'
+      [(ngModel)]="product.attributes"
+      name="attributes"
+    ></textarea>
+
+    <button type="submit">Créer</button>
+  </form>
+
+  <p *ngIf="successMessage">{{ successMessage }}</p>
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</section>
