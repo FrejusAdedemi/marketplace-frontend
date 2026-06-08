@@ -1,0 +1,32 @@
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+<section *ngIf="product as p" class="product-detail">
+  <div>
+    <img
+      *ngIf="p.images && p.images.length > 0"
+      [src]="p.images[0]"
+      [alt]="p.name"
+    />
+  </div>
+
+  <div>
+    <h1>{{ p.name }}</h1>
+    <p>{{ p.description }}</p>
+    <strong>{{ p.price }} €</strong>
+    <p>Catégorie : {{ p.category }}</p>
+  </div>
+</section>
+
+<section class="suggestions">
+  <h2>Produits similaires</h2>
+
+  <p *ngIf="suggestions.length === 0">
+    Aucun produit similaire pour le moment.
+  </p>
+
+  <article *ngFor="let item of suggestions">
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.price }} €</p>
+    <a [routerLink]="['/products', item._id]">Voir</a>
+  </article>
+</section>
