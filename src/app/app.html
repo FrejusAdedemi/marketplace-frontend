@@ -1,1 +1,27 @@
-<router-outlet />
+<header class="navbar">
+  <a class="navbar__brand" routerLink="/home">Marketplace</a>
+
+  <nav class="navbar__links">
+    <a routerLink="/home" routerLinkActive="active">Accueil</a>
+    <a routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      Catalogue
+    </a>
+    @if (canManageProducts()) {
+      <a routerLink="/products/new" routerLinkActive="active">Ajouter un produit</a>
+    }
+  </nav>
+
+  <div class="navbar__auth">
+    @if (authService.isLoggedIn()) {
+      <a routerLink="/profil" routerLinkActive="active">Profil</a>
+      <button type="button" class="navbar__logout" (click)="onLogout()">Déconnexion</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="active">Connexion</a>
+      <a routerLink="/register" routerLinkActive="active">Inscription</a>
+    }
+  </div>
+</header>
+
+<main class="app-main">
+  <router-outlet />
+</main>
