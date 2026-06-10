@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.catalog-header {
+  margin-bottom: 1.5rem;
+
+  h1 {
+    color: var(--color-primary-dark);
+    margin-bottom: 1rem;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-muted);
+    }
+
+    input,
+    select {
+      padding: 0.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    &--search {
+      flex: 1 1 200px;
+    }
+  }
+}

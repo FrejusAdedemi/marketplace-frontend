@@ -1,0 +1,91 @@
+<div class="catalog-header">
+  <h1>Catalogue</h1>
+
+  <form class="filters" (ngSubmit)="applyFilters()">
+    <div class="filters__field filters__field--search">
+      <label for="search">Recherche</label>
+      <input
+        id="search"
+        type="search"
+        name="search"
+        placeholder="Rechercher un produit..."
+        [(ngModel)]="search"
+        (ngModelChange)="onSearchChange()"
+      />
+    </div>
+
+    <div class="filters__field">
+      <label for="category">Catégorie</label>
+      <input
+        id="category"
+        type="text"
+        name="category"
+        placeholder="Ex : High-Tech"
+        [(ngModel)]="category"
+      />
+    </div>
+
+    <div class="filters__field">
+      <label for="minPrice">Prix min (€)</label>
+      <input id="minPrice" type="number" name="minPrice" min="0" [(ngModel)]="minPrice" />
+    </div>
+
+    <div class="filters__field">
+      <label for="maxPrice">Prix max (€)</label>
+      <input id="maxPrice" type="number" name="maxPrice" min="0" [(ngModel)]="maxPrice" />
+    </div>
+
+    <div class="filters__field">
+      <label for="sort">Trier par</label>
+      <select id="sort" name="sort" [(ngModel)]="sort">
+        <option value="created_at_desc">Nouveautés</option>
+        <option value="price_asc">Prix croissant</option>
+        <option value="price_desc">Prix décroissant</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+  </form>
+</div>
+
+@switch (state) {
+  @case ('loading') {
+    <p class="state-message">Chargement des produits...</p>
+  }
+  @case ('error') {
+    <p class="state-message state-message--error">
+      Impossible de charger le catalogue pour le moment. Réessayez plus tard.
+    </p>
+  }
+  @case ('success') {
+    @if (filteredProducts.length) {
+      <div class="product-grid">
+        @for (product of filteredProducts; track product._id) {
+          <app-product-card [product]="product" />
+        }
+      </div>
+
+      <div class="pagination">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          [disabled]="page <= 1"
+          (click)="goToPage(page - 1)"
+        >
+          Précédent
+        </button>
+        <span>Page {{ page }} / {{ totalPages }}</span>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          [disabled]="page >= totalPages"
+          (click)="goToPage(page + 1)"
+        >
+          Suivant
+        </button>
+      </div>
+    } @else {
+      <p class="state-message">Aucun produit ne correspond à votre recherche.</p>
+    }
+  }
+}
