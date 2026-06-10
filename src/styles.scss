@@ -1,1 +1,144 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --color-primary: #1f7a4d;
+  --color-primary-dark: #155c39;
+  --color-primary-light: #e6f4ec;
+  --color-text: #1f2d27;
+  --color-muted: #6b7c75;
+  --color-border: #d8e6df;
+  --color-bg: #f5faf7;
+  --color-error: #c0392b;
+  --color-error-bg: #fdecea;
+  --color-success: #1f7a4d;
+  --color-success-bg: #e6f4ec;
+  --radius: 10px;
+  --shadow: 0 2px 10px rgba(31, 122, 77, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Utilitaires partagés par les pages produits (accueil, catalogue, fiche, formulaire) */
+
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.product-section {
+  margin: 2rem 0;
+
+  h2 {
+    margin-bottom: 1rem;
+    color: var(--color-primary-dark);
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.state-message {
+  color: var(--color-muted);
+  padding: 1.5rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+
+  &--error {
+    color: var(--color-error);
+    background: var(--color-error-bg);
+    border-color: var(--color-error);
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary-dark);
+    text-decoration: none;
+  }
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--color-primary-dark);
+  border-color: var(--color-border);
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    text-decoration: none;
+  }
+}
+
+.btn-danger {
+  background: #fff;
+  color: var(--color-error);
+  border-color: var(--color-error);
+
+  &:hover:not(:disabled) {
+    background: var(--color-error-bg);
+    text-decoration: none;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+
+  span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+}

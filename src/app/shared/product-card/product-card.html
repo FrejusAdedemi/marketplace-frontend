@@ -1,0 +1,19 @@
+<a class="product-card" [routerLink]="['/products', product._id]">
+  <div class="product-card__image">
+    @if (product.images?.length) {
+      <img [src]="product.images[0]" [alt]="product.name" />
+    } @else {
+      <div class="product-card__placeholder">Pas d'image</div>
+    }
+
+    @if (product.is_sponsored) {
+      <span class="product-card__badge">Sponsorisé</span>
+    }
+  </div>
+
+  <div class="product-card__body">
+    <p class="product-card__category">{{ product.category }}</p>
+    <h3 class="product-card__name">{{ product.name }}</h3>
+    <p class="product-card__price">{{ product.price | currency: 'EUR' }}</p>
+  </div>
+</a>
