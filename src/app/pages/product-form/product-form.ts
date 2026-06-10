@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -14,6 +14,12 @@ import { canManageProducts } from '../../models/product.model';
   styleUrl: './product-form.scss'
 })
 export class ProductForm implements OnInit {
+  private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private productService = inject(ProductService);
+  private authService = inject(AuthService);
+
   form = this.fb.nonNullable.group({
     name: ['', Validators.required],
     description: ['', Validators.required],
@@ -33,14 +39,6 @@ export class ProductForm implements OnInit {
   loading = false;
   submitting = false;
   error = '';
-
-  constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private productService: ProductService,
-    private authService: AuthService
-  ) {}
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id');

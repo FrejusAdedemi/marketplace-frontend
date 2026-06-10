@@ -1,6 +1,6 @@
 <a class="product-card" [routerLink]="['/products', product._id]">
   <div class="product-card__image">
-    @if (product.images?.length) {
+    @if (product.images.length) {
       <img [src]="product.images[0]" [alt]="product.name" />
     } @else {
       <div class="product-card__placeholder">Pas d'image</div>

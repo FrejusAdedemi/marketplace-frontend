@@ -15,7 +15,7 @@
     @if (product) {
       <div class="product-detail">
         <div class="product-detail__gallery">
-          @if (product.images?.length) {
+          @if (product.images.length) {
             <img [src]="product.images[0]" [alt]="product.name" />
           } @else {
             <div class="product-detail__placeholder">Pas d'image</div>
