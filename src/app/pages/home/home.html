@@ -1,0 +1,57 @@
+<section class="hero">
+  <h1>Bienvenue sur la marketplace</h1>
+  <p>Des milliers de produits, livrés rapidement, au meilleur prix.</p>
+  <a class="hero__cta" routerLink="/products">Découvrir le catalogue</a>
+</section>
+
+<section class="product-section">
+  <h2>Produits sponsorisés</h2>
+
+  @switch (sponsoredState) {
+    @case ('loading') {
+      <p class="state-message">Chargement des produits sponsorisés...</p>
+    }
+    @case ('error') {
+      <p class="state-message state-message--error">
+        Impossible de charger les produits sponsorisés pour le moment.
+      </p>
+    }
+    @case ('success') {
+      @if (sponsoredProducts.length) {
+        <div class="product-grid">
+          @for (product of sponsoredProducts; track product._id) {
+            <app-product-card [product]="product" />
+          }
+        </div>
+      } @else {
+        <p class="state-message">Aucun produit sponsorisé pour le moment.</p>
+      }
+    }
+  }
+</section>
+
+<section class="product-section">
+  <h2>Meilleures ventes</h2>
+
+  @switch (bestSellersState) {
+    @case ('loading') {
+      <p class="state-message">Chargement des meilleures ventes...</p>
+    }
+    @case ('error') {
+      <p class="state-message state-message--error">
+        Impossible de charger les meilleures ventes pour le moment.
+      </p>
+    }
+    @case ('success') {
+      @if (bestSellers.length) {
+        <div class="product-grid">
+          @for (product of bestSellers; track product._id) {
+            <app-product-card [product]="product" />
+          }
+        </div>
+      } @else {
+        <p class="state-message">Aucun produit disponible pour le moment.</p>
+      }
+    }
+  }
+</section>
