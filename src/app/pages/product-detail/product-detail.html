@@ -1,0 +1,69 @@
+@switch (state) {
+  @case ('loading') {
+    <p class="state-message">Chargement du produit...</p>
+  }
+  @case ('not-found') {
+    <p class="state-message">Ce produit n'existe pas ou n'est plus disponible.</p>
+    <a class="btn btn-secondary" routerLink="/products">Retour au catalogue</a>
+  }
+  @case ('error') {
+    <p class="state-message state-message--error">
+      Impossible de charger ce produit pour le moment. Réessayez plus tard.
+    </p>
+  }
+  @case ('success') {
+    @if (product) {
+      <div class="product-detail">
+        <div class="product-detail__gallery">
+          @if (product.images?.length) {
+            <img [src]="product.images[0]" [alt]="product.name" />
+          } @else {
+            <div class="product-detail__placeholder">Pas d'image</div>
+          }
+        </div>
+
+        <div class="product-detail__info">
+          @if (product.is_sponsored) {
+            <span class="product-detail__badge">Sponsorisé</span>
+          }
+
+          <p class="product-detail__category">{{ product.category }}</p>
+          <h1>{{ product.name }}</h1>
+          <p class="product-detail__price">{{ product.price | currency: 'EUR' }}</p>
+          <p class="product-detail__description">{{ product.description }}</p>
+
+          @if (canManage) {
+            <div class="product-detail__actions">
+              <a class="btn btn-secondary" [routerLink]="['/products', product._id, 'edit']">
+                Modifier
+              </a>
+              <button type="button" class="btn btn-danger" [disabled]="deleting" (click)="onDelete()">
+                {{ deleting ? 'Suppression...' : 'Supprimer' }}
+              </button>
+            </div>
+
+            @if (deleteError) {
+              <p class="state-message state-message--error">{{ deleteError }}</p>
+            }
+          }
+        </div>
+      </div>
+
+      <section class="product-section">
+        <h2>Produits similaires</h2>
+
+        @if (suggestionsLoading) {
+          <p class="state-message">Chargement des suggestions...</p>
+        } @else if (suggestions.length) {
+          <div class="product-grid">
+            @for (suggestion of suggestions; track suggestion._id) {
+              <app-product-card [product]="suggestion" />
+            }
+          </div>
+        } @else {
+          <p class="state-message">Aucune suggestion pour ce produit.</p>
+        }
+      </section>
+    }
+  }
+}
