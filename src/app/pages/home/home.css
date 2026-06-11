@@ -1,0 +1,114 @@
+.hero {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #131921, #232f3e);
+  color: white;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 20px;
+  color: #e5e7eb;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.btn.primary {
+  background: #ff9900;
+  color: #111827;
+}
+
+.btn.primary:hover {
+  background: #f3a847;
+}
+
+.btn.secondary {
+  background: white;
+  color: #111827;
+}
+
+.btn.secondary:hover {
+  background: #e5e7eb;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 50px 8%;
+  background: #f3f4f6;
+}
+
+.feature-card {
+  background: white;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.feature-card h3 {
+  margin-bottom: 12px;
+  color: #131921;
+}
+
+.feature-card p {
+  color: #4b5563;
+}
+
+.cta {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+}
+
+.cta h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+  color: #131921;
+}
+
+.cta p {
+  color: #4b5563;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
