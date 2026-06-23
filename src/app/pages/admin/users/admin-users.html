@@ -1,0 +1,64 @@
+<div class="admin-users">
+  <h1 class="admin-users__title">Gestion des utilisateurs</h1>
+
+  @if (loading()) {
+    <p class="admin-users__state">Chargement...</p>
+  }
+
+  @if (error()) {
+    <p class="admin-users__message admin-users__message--error">{{ error() }}</p>
+  }
+
+  @if (success()) {
+    <p class="admin-users__message admin-users__message--success">{{ success() }}</p>
+  }
+
+  @if (!loading() && users().length === 0 && !error()) {
+    <p class="admin-users__state">Aucun utilisateur trouvé.</p>
+  }
+
+  @if (users().length > 0) {
+    <div class="admin-users__table-wrapper">
+      <table class="admin-users__table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Actif</th>
+            <th>Créé le</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of users(); track user.id) {
+            <tr>
+              <td>{{ user.email }}</td>
+              <td>
+                <select
+                  class="admin-users__role-select"
+                  [value]="user.role"
+                  (change)="onRoleChange(user.id, $event)"
+                  aria-label="Changer le rôle de {{ user.email }}"
+                >
+                  @for (role of roleOptions; track role) {
+                    <option [value]="role" [selected]="user.role === role">{{ role }}</option>
+                  }
+                </select>
+              </td>
+              <td>{{ user.is_active ? 'Oui' : 'Non' }}</td>
+              <td>{{ user.created_at | date: 'dd/MM/yyyy HH:mm' }}</td>
+              <td>
+                <button
+                  class="admin-users__btn-delete"
+                  (click)="onDelete(user.id, user.email)"
+                >
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
