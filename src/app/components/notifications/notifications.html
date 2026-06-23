@@ -1,0 +1,16 @@
+@if (auth.currentUser() && notifications().length > 0) {
+  <div class="notifications" role="status" aria-live="polite" aria-label="Notifications">
+    @for (n of notifications(); track n.id) {
+      <div class="notification" [class]="'notification--' + n.level">
+        <span class="notification__message">{{ n.message }}</span>
+        <button
+          class="notification__close"
+          (click)="dismiss(n.id)"
+          aria-label="Fermer la notification"
+        >
+          &times;
+        </button>
+      </div>
+    }
+  </div>
+}
