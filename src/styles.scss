@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+/* Variables de thème — couleur dominante : vert (exigence client) */
+:root {
+  --color-primary: #2e7d32;
+  --color-primary-dark: #1b5e20;
+  --color-primary-light: #4caf50;
+  --color-on-primary: #ffffff;
+  --color-surface: #ffffff;
+  --color-background: #f5f5f5;
+  --color-on-surface: #212121;
+  --color-border: #e0e0e0;
+  --color-error: #d32f2f;
+  --color-success: #388e3c;
+  --color-warning: #f57c00;
+  --color-text-muted: #757575;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-on-surface);
+  background-color: var(--color-background);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+main {
+  min-height: calc(100vh - 120px);
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
