@@ -1,0 +1,56 @@
+<nav class="navbar">
+  <div class="navbar__brand">
+    <!-- Placeholder : "Marketplace" issu du titre index.html — à remplacer si nom officiel défini -->
+    <a routerLink="/" class="navbar__logo">Marketplace</a>
+  </div>
+
+  <ul class="navbar__links">
+    @if (auth.currentUser() === null) {
+      <!-- Visiteur (non authentifié) -->
+      <li>
+        <a routerLink="/login" routerLinkActive="active" data-testid="link-login">Connexion</a>
+      </li>
+      <li>
+        <a routerLink="/register" routerLinkActive="active" data-testid="link-register">Inscription</a>
+      </li>
+    } @else if (auth.currentUser()!.role === 'admin') {
+      <!-- Admin -->
+      <!-- Routes coéquipiers à venir : /catalog, /products, /stocks -->
+      <li>
+        <a routerLink="/admin/users" routerLinkActive="active" data-testid="link-admin-users">
+          Gestion des utilisateurs
+        </a>
+      </li>
+      <li>
+        <a routerLink="/profil" routerLinkActive="active" data-testid="link-profil">Profil</a>
+      </li>
+      <li>
+        <button class="navbar__logout" (click)="onLogout()" data-testid="btn-logout">
+          Déconnexion
+        </button>
+      </li>
+    } @else if (auth.currentUser()!.role === 'store_manager') {
+      <!-- Store manager -->
+      <!-- Routes coéquipiers à venir : /catalog, /products, /stocks, /orders/store -->
+      <li>
+        <a routerLink="/profil" routerLinkActive="active" data-testid="link-profil">Profil</a>
+      </li>
+      <li>
+        <button class="navbar__logout" (click)="onLogout()" data-testid="btn-logout">
+          Déconnexion
+        </button>
+      </li>
+    } @else {
+      <!-- Customer -->
+      <!-- Routes coéquipiers à venir : /catalog, /cart, /orders -->
+      <li>
+        <a routerLink="/profil" routerLinkActive="active" data-testid="link-profil">Profil</a>
+      </li>
+      <li>
+        <button class="navbar__logout" (click)="onLogout()" data-testid="btn-logout">
+          Déconnexion
+        </button>
+      </li>
+    }
+  </ul>
+</nav>
