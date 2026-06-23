@@ -57,3 +57,29 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+---
+
+## Contributions — Laura (Marketplace B3 Keyce)
+
+> Framework de test réel : **Vitest 4.x** (et non Karma comme indiqué dans le scaffold Angular CLI par défaut).
+
+| Feature | Branche | Fichiers clés |
+|---|---|---|
+| **Navbar globale** (menu par rôle) | `feat/navbar-role` | `src/app/components/navbar/` · `navbar.spec.ts` |
+| **Footer global** | `feat/footer` | `src/app/components/footer/` |
+| **Pages admin** (gestion utilisateurs + rôles) | `feat/admin-users` | `src/app/pages/admin/users/` · `src/app/services/admin.service.ts` · `src/app/guards/role-guard.ts` |
+| **Notifications WebSocket** temps réel | `feat/ws-notifications` | `src/app/services/websocket.service.ts` · `src/app/components/notifications/` |
+
+### Infrastructure partagée (branche `global-components`)
+
+- `src/app/models/user.model.ts` — `UserRole`, `UserInfo`, `UserRecord`
+- `src/app/models/ws-event.model.ts` — union discriminée `WsEvent` (6 types, contrat §10.2)
+- `src/styles.scss` — variables CSS thème vert (`--color-primary`, etc.)
+- `src/app/services/auth.ts` — enrichi : décodage JWT, signal `currentUser`, méthode `getRole()`
+
+### Choix techniques notables
+
+- **WebSocket dual-connexion** : le relay gateway requiert `?service=orders|stocks` ; deux connexions ouvertes (`orders` pour tous les authentifiés, `stocks` uniquement pour `store_manager` et `admin`).
+- **Reconnexion exponentielle** : 1 s → 2 s → 4 s … max 30 s ; pas de reconnect sur codes `4001` (token révoqué), `4004` (service inconnu), `1000` (fermeture normale).
+- **Signal `currentUser`** dans `AuthService` : la navbar et les notifications réagissent au login/logout sans polling.
