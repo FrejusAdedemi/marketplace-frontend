@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = '/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
 
   register(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, { email, password });
+    return this.http.post(`${this.apiUrl}/register`, {
+      email,
+      password,
+      role: 'customer'
+    });
   }
 
   login(email: string, password: string): Observable<any> {
@@ -19,17 +23,19 @@ export class AuthService {
       tap((res: any) => {
         localStorage.setItem('access_token', res.access_token);
         localStorage.setItem('refresh_token', res.refresh_token);
+
+        const role = res.user?.role || res.role || 'customer';
+        localStorage.setItem('role', role);
+        localStorage.setItem('user_email', email);
       })
     );
   }
 
   logout(): void {
-    const token = this.getToken();
-    this.http.post(`${this.apiUrl}/logout`, {
-      refresh_token: localStorage.getItem('refresh_token')
-    }).subscribe();
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user_email');
     this.router.navigate(['/login']);
   }
 
@@ -38,7 +44,14 @@ export class AuthService {
   }
 
   updateMe(data: any): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/me`, data);
+    const email = localStorage.getItem('user_email') || 'local-user';
+    localStorage.setItem(`profile_${email}`, JSON.stringify(data));
+    return of(data);
+  }
+
+  getLocalProfile(): any {
+    const email = localStorage.getItem('user_email') || 'local-user';
+    return JSON.parse(localStorage.getItem(`profile_${email}`) || '{}');
   }
 
   getToken(): string | null {

@@ -1,25 +1,47 @@
-<div class="container">
-  <h2>Inscription</h2>
-
-  <div class="error" *ngIf="error">{{ error }}</div>
-  <div class="success" *ngIf="success">{{ success }}</div>
-
-  <form (ngSubmit)="onSubmit()">
-    <div class="field">
-      <label>Email</label>
-      <input type="email" [(ngModel)]="email" name="email" required />
+<section class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Inscription</h1>
+      <p>Créez votre compte client pour utiliser la marketplace.</p>
     </div>
 
-    <div class="field">
-      <label>Mot de passe</label>
-      <input type="password" [(ngModel)]="password" name="password" required />
-      <small>Min 8 caractères, 1 majuscule, 1 chiffre, 1 caractère spécial</small>
-    </div>
+    <div class="error" *ngIf="error">{{ error }}</div>
+    <div class="success" *ngIf="success">{{ success }}</div>
 
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Inscription...' : 'S\'inscrire' }}
-    </button>
-  </form>
+    <form (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="field">
+        <label for="register-email">Email</label>
+        <input
+          id="register-email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          autocomplete="email"
+          required
+        />
+      </div>
 
-  <p>Déjà un compte ? <a routerLink="/login">Se connecter</a></p>
-</div>
+      <div class="field">
+        <label for="register-password">Mot de passe</label>
+        <input
+          id="register-password"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          autocomplete="new-password"
+          required
+        />
+        <small>Minimum 8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial.</small>
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Inscription...' : 'S’inscrire' }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Déjà un compte ?
+      <a routerLink="/login">Se connecter</a>
+    </p>
+  </div>
+</section>

@@ -1,39 +1,23 @@
-<section class="catalog">
-  <h1>Catalogue produits</h1>
+<div class="pagination" *ngIf="products.length > 0">
+  <button
+    type="button"
+    class="secondary"
+    (click)="previousPage()"
+    [disabled]="page <= 1"
+  >
+    Page précédente
+  </button>
 
-  <div class="filters">
-    <input type="text" placeholder="Recherche" [(ngModel)]="search" />
-    <input type="text" placeholder="Catégorie" [(ngModel)]="category" />
+  <span>
+    Page {{ page }} / {{ totalPages }}
+  </span>
 
-    <select [(ngModel)]="sort">
-      <option value="created_at_desc">Plus récents</option>
-      <option value="price_asc">Prix croissant</option>
-      <option value="price_desc">Prix décroissant</option>
-    </select>
-
-    <button (click)="applyFilters()">Filtrer</button>
-  </div>
-
-  <p *ngIf="errorMessage">{{ errorMessage }}</p>
-
-  <p *ngIf="products.length === 0 && !errorMessage">
-    Aucun produit disponible.
-  </p>
-
-  <div class="product-grid">
-    <article *ngFor="let product of products" class="product-card">
-      <img
-        *ngIf="product.images && product.images.length > 0"
-        [src]="product.images[0]"
-        [alt]="product.name"
-      />
-
-      <h2>{{ product.name }}</h2>
-      <p>{{ product.description }}</p>
-      <strong>{{ product.price }} €</strong>
-
-      <br />
-      <a [routerLink]="['/products', product._id]">Voir le produit</a>
-    </article>
-  </div>
-</section>
+  <button
+    type="button"
+    class="secondary"
+    (click)="nextPage()"
+    [disabled]="page >= totalPages"
+  >
+    Page suivante
+  </button>
+</div>

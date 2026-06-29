@@ -1,0 +1,26 @@
+<section class="orders-page">
+  <h1>Mes commandes</h1>
+
+  <p class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </p>
+
+  <p *ngIf="orders.length === 0 && !errorMessage">
+    Aucune commande pour le moment.
+  </p>
+
+  <article class="order-card" *ngFor="let order of orders">
+    <h2>Commande #{{ order.id || order._id }}</h2>
+    <p>Statut : {{ order.status }}</p>
+    <p>Total : {{ order.total_amount || order.total }} €</p>
+    <p>Date : {{ order.created_at }}</p>
+
+    <button
+      *ngIf="order.status === 'pending'"
+      type="button"
+      (click)="cancelOrder(order.id || order._id)"
+    >
+      Annuler
+    </button>
+  </article>
+</section>

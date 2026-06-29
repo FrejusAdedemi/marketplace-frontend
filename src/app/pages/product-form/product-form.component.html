@@ -1,54 +1,93 @@
-<section class="product-form">
-  <h1>Créer un produit</h1>
+<section class="product-form-page">
+  <div class="product-form-card">
+    <h1>Créer un produit</h1>
+    <p>Ajoutez un produit complet avec image, prix, catégorie et stock.</p>
 
-  <form (ngSubmit)="submit()">
-    <input
-      type="text"
-      placeholder="Nom du produit"
-      [(ngModel)]="product.name"
-      name="name"
-      required
-    />
+    <form (ngSubmit)="submit()" class="product-form">
+      <label>
+        Nom du produit
+        <input
+          type="text"
+          placeholder="Ex : Souris gaming"
+          [(ngModel)]="product.name"
+          name="name"
+          required
+        />
+      </label>
 
-    <textarea
-      placeholder="Description"
-      [(ngModel)]="product.description"
-      name="description"
-      required
-    ></textarea>
+      <label>
+        Description
+        <textarea
+          placeholder="Décrivez le produit simplement"
+          [(ngModel)]="product.description"
+          name="description"
+          required
+        ></textarea>
+      </label>
 
-    <input
-      type="number"
-      placeholder="Prix"
-      [(ngModel)]="product.price"
-      name="price"
-      required
-    />
+      <label>
+        Prix
+        <input
+          type="number"
+          placeholder="29.99"
+          [(ngModel)]="product.price"
+          name="price"
+          min="0"
+          required
+        />
+      </label>
 
-    <input
-      type="text"
-      placeholder="Catégorie"
-      [(ngModel)]="product.category"
-      name="category"
-      required
-    />
+      <label>
+        Catégorie
+        <input
+          type="text"
+          placeholder="electronics, clothing, gaming..."
+          [(ngModel)]="product.category"
+          name="category"
+          required
+        />
+      </label>
 
-    <input
-      type="text"
-      placeholder="Images séparées par des virgules"
-      [(ngModel)]="product.images"
-      name="images"
-    />
+      <label>
+        Stock disponible
+        <input
+          type="number"
+          name="stock"
+          min="0"
+          [(ngModel)]="product.stock"
+        />
+      </label>
 
-    <textarea
-      placeholder='Attributs JSON ex: {"couleur":"noir","taille":"M"}'
-      [(ngModel)]="product.attributes"
-      name="attributes"
-    ></textarea>
+      <label>
+        Image du produit
+        <input
+          type="url"
+          name="images"
+          placeholder="https://exemple.com/image.jpg"
+          [(ngModel)]="product.images"
+        />
+      </label>
 
-    <button type="submit">Créer</button>
-  </form>
+      <img
+        *ngIf="product.images"
+        [src]="product.images"
+        alt="Aperçu produit"
+        class="preview-image"
+      />
 
-  <p *ngIf="successMessage">{{ successMessage }}</p>
-  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+      <label>
+        Attributs avancés JSON
+        <textarea
+          placeholder='Ex : {"brand":"Logitech","color":"noir"}'
+          [(ngModel)]="product.attributes"
+          name="attributes"
+        ></textarea>
+      </label>
+
+      <button type="submit">Créer le produit</button>
+    </form>
+
+    <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
 </section>

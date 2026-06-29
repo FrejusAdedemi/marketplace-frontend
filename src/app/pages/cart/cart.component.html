@@ -1,0 +1,33 @@
+<section class="cart-page">
+  <h1>Panier</h1>
+
+  <p *ngIf="items.length === 0">
+    Votre panier est vide.
+  </p>
+
+  <div class="cart-list" *ngIf="items.length > 0">
+    <article class="cart-item" *ngFor="let item of items">
+      <div>
+        <h2>{{ item.product.name }}</h2>
+        <p>Quantité : {{ item.quantity }}</p>
+        <strong>{{ item.product.price }} €</strong>
+      </div>
+
+      <button type="button" (click)="remove(getId(item))">
+        Retirer
+      </button>
+    </article>
+
+    <div class="cart-summary">
+      <strong>Total : {{ total() }}</strong>
+
+      <button type="button" class="order-btn" (click)="checkout()">
+  Passer commande
+</button>
+
+      <button type="button" (click)="clear()">
+        Vider le panier
+      </button>
+    </div>
+  </div>
+</section>

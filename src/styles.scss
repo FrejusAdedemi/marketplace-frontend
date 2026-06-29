@@ -1,1 +1,184 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: #f4fff8;
+  color: #123524;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  transition: 0.18s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+a {
+  transition: 0.18s ease;
+}
+
+.error {
+  background: #ffe9e9;
+  color: #b42318;
+  border: 1px solid #ffb4b4;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.success {
+  background: #e9fff0;
+  color: #1f8f4d;
+  border: 1px solid #bde8cb;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.auth-page,
+.profile-page {
+  min-height: calc(100vh - 76px);
+  padding: 4rem 8%;
+  background:
+    radial-gradient(circle at top left, rgba(31, 143, 77, 0.12), transparent 30%),
+    linear-gradient(135deg, #f4fff8, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card,
+.profile-card {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  border: 1px solid #d7eadf;
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 18px 55px rgba(20, 90, 50, 0.1);
+}
+
+.profile-card {
+  max-width: 760px;
+}
+
+.auth-header,
+.profile-header {
+  margin-bottom: 1.5rem;
+}
+
+.auth-header h1,
+.profile-header h1 {
+  margin: 0 0 0.5rem;
+  color: #0f2f21;
+  font-size: 2rem;
+}
+
+.auth-header p,
+.profile-header p {
+  margin: 0;
+  color: #5f7568;
+}
+
+.auth-form,
+.profile-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field label {
+  font-weight: 800;
+  color: #123524;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid #cfe5d8;
+  border-radius: 14px;
+  outline: none;
+  background: #fbfffc;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: #1f8f4d;
+  box-shadow: 0 0 0 4px rgba(31, 143, 77, 0.12);
+}
+
+.field small {
+  color: #5f7568;
+}
+
+.auth-form button,
+.profile-form button,
+.logout {
+  border: none;
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  background: #1f8f4d;
+  color: white;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.auth-form button:disabled,
+.profile-form button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.auth-switch {
+  margin-top: 1.25rem;
+  text-align: center;
+  color: #5f7568;
+}
+
+.auth-switch a {
+  color: #1f8f4d;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.info {
+  background: #ecf8f0;
+  border: 1px solid #cfe5d8;
+  border-radius: 18px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logout {
+  background: #123524;
+}

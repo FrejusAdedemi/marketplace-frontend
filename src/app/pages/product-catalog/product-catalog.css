@@ -1,0 +1,117 @@
+.catalog {
+  min-height: 100vh;
+  padding: 4rem 8%;
+  background: linear-gradient(135deg, #f4fff8, #ffffff);
+  color: #123524;
+}
+
+.catalog h1 {
+  font-size: 2.6rem;
+  margin-bottom: 2rem;
+  color: #0f2f21;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #d7eadf;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(20, 90, 50, 0.08);
+}
+
+.filters input,
+.filters select {
+  padding: 0.9rem 1rem;
+  border: 1px solid #cfe5d8;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: #2e9d5b;
+}
+
+.filters button,
+.product-card a {
+  padding: 0.9rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background: #1f8f4d;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: #ffffff;
+  border: 1px solid #d7eadf;
+  border-radius: 22px;
+  padding: 1.3rem;
+  box-shadow: 0 10px 30px rgba(20, 90, 50, 0.08);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+}
+
+.product-card h2 {
+  font-size: 1.2rem;
+  color: #123524;
+}
+
+.product-card p {
+  color: #5f7568;
+}
+
+.product-card strong {
+  display: block;
+  margin: 1rem 0;
+  color: #1f8f4d;
+  font-size: 1.2rem;
+}
+
+.add-product-link {
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  background: #1f8f4d;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(31, 143, 77, 0.18);
+}
+
+.product-image-link {
+  display: block;
+  text-decoration: none;
+}
+
+.product-image-link img {
+  transition: transform 0.2s ease;
+}
+
+.product-image-link:hover img {
+  transform: scale(1.03);
+}
+
+.stock {
+  color: #1f8f4d;
+  font-weight: 800;
+}

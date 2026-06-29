@@ -1,0 +1,36 @@
+<header class="main-header">
+  <a routerLink="/home" class="logo">
+    MarketPlace
+  </a>
+
+  <nav class="nav-links">
+    <a routerLink="/home" routerLinkActive="active">Accueil</a>
+    <a routerLink="/products" routerLinkActive="active">Produits</a>
+    <a routerLink="/cart" routerLinkActive="active">Panier</a>
+    <a routerLink="/orders" routerLinkActive="active">Commandes</a>
+
+    <a
+      *ngIf="canManageProducts"
+      routerLink="/products/new"
+      routerLinkActive="active"
+    >
+      Ajouter un produit
+    </a>
+  </nav>
+
+  <div class="auth-links">
+    <span class="role-badge">
+      {{ roleLabel }}
+    </span>
+
+    <ng-container *ngIf="!isLoggedIn; else logged">
+      <a routerLink="/login" class="login">Connexion</a>
+      <a routerLink="/register" class="register">Inscription</a>
+    </ng-container>
+
+    <ng-template #logged>
+      <a routerLink="/profil">Profil</a>
+      <button type="button" (click)="logout()">Déconnexion</button>
+    </ng-template>
+  </div>
+</header>

@@ -1,38 +1,46 @@
-<section class="hero">
-  <div class="hero-content">
-    <h1>Bienvenue sur Marketplace</h1>
-    <p>Découvrez, achetez et vendez facilement vos produits en ligne.</p>
+<section class="home-page">
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">Marketplace microservices</span>
+
+      <h1>Achetez, vendez et gérez vos produits simplement.</h1>
+
+      <p>
+        Une marketplace inspirée d’Amazon avec catalogue, panier,
+        commandes, authentification et gestion vendeur.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/products" class="btn primary">Explorer le catalogue</a>
+        <a routerLink="/login" class="btn secondary">Se connecter</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <article class="feature-card">
+      <h3>Catalogue complet</h3>
+      <p>Parcourez les produits, recherchez par nom et filtrez par catégorie.</p>
+    </article>
+
+    <article class="feature-card">
+      <h3>Panier intégré</h3>
+      <p>Ajoutez vos articles au panier avant de créer une commande.</p>
+    </article>
+
+    <article class="feature-card">
+      <h3>Espace vendeur</h3>
+      <p>Les vendeurs peuvent ajouter et gérer leurs produits.</p>
+    </article>
+  </section>
+
+  <section class="cta">
+    <h2>Commencez maintenant</h2>
+    <p>Accédez au catalogue ou connectez-vous à votre compte.</p>
 
     <div class="hero-actions">
       <a routerLink="/products" class="btn primary">Voir les produits</a>
-      <a routerLink="/products/new" class="btn secondary">Ajouter un produit</a>
+      <a routerLink="/cart" class="btn secondary">Voir le panier</a>
     </div>
-  </div>
-</section>
-
-<section class="features">
-  <div class="feature-card">
-    <h3>Produits variés</h3>
-    <p>Consultez le catalogue complet des produits disponibles.</p>
-  </div>
-
-  <div class="feature-card">
-    <h3>Vente rapide</h3>
-    <p>Ajoutez vos propres produits en quelques clics.</p>
-  </div>
-
-  <div class="feature-card">
-    <h3>Interface simple</h3>
-    <p>Une navigation claire pour accéder rapidement aux fonctionnalités.</p>
-  </div>
-</section>
-
-<section class="cta">
-  <h2>Commencez maintenant</h2>
-  <p>Accédez au catalogue ou connectez-vous à votre compte.</p>
-
-  <div class="hero-actions">
-    <a routerLink="/products" class="btn primary">Explorer</a>
-    <a routerLink="/login" class="btn secondary">Connexion</a>
-  </div>
+  </section>
 </section>

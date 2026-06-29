@@ -1,37 +1,72 @@
-<div class="container">
-  <div class="header">
-    <h2>Mon Profil</h2>
-    <button class="logout" (click)="onLogout()">Se déconnecter</button>
+<section class="profile-page">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div>
+        <h1>Mon profil</h1>
+        <p>Gérez vos informations personnelles.</p>
+      </div>
+
+      <button class="logout" type="button" (click)="onLogout()">
+        Se déconnecter
+      </button>
+    </div>
+
+    <div class="info" *ngIf="user">
+      <p><strong>Email :</strong> {{ user.email }}</p>
+      <p><strong>Rôle :</strong> {{ user.role || 'customer' }}</p>
+    </div>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+    <div class="success" *ngIf="success">{{ success }}</div>
+
+    <form (ngSubmit)="onUpdate()" class="profile-form">
+      <div class="field">
+        <label for="first-name">Prénom</label>
+        <input
+          id="first-name"
+          type="text"
+          [(ngModel)]="form.first_name"
+          name="first_name"
+          autocomplete="given-name"
+        />
+      </div>
+
+      <div class="field">
+        <label for="last-name">Nom</label>
+        <input
+          id="last-name"
+          type="text"
+          [(ngModel)]="form.last_name"
+          name="last_name"
+          autocomplete="family-name"
+        />
+      </div>
+
+      <div class="field">
+        <label for="phone">Téléphone</label>
+        <input
+          id="phone"
+          type="text"
+          [(ngModel)]="form.phone"
+          name="phone"
+          autocomplete="tel"
+        />
+      </div>
+
+      <div class="field">
+        <label for="address">Adresse</label>
+        <input
+          id="address"
+          type="text"
+          [(ngModel)]="form.address"
+          name="address"
+          autocomplete="street-address"
+        />
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Mise à jour...' : 'Enregistrer' }}
+      </button>
+    </form>
   </div>
-
-  <div class="info" *ngIf="user">
-    <p><strong>Email :</strong> {{ user.email }}</p>
-    <p><strong>Rôle :</strong> {{ user.role }}</p>
-  </div>
-
-  <div class="error" *ngIf="error">{{ error }}</div>
-  <div class="success" *ngIf="success">{{ success }}</div>
-
-  <form (ngSubmit)="onUpdate()">
-    <div class="field">
-      <label>Prénom</label>
-      <input type="text" [(ngModel)]="form.first_name" name="first_name" />
-    </div>
-    <div class="field">
-      <label>Nom</label>
-      <input type="text" [(ngModel)]="form.last_name" name="last_name" />
-    </div>
-    <div class="field">
-      <label>Téléphone</label>
-      <input type="text" [(ngModel)]="form.phone" name="phone" />
-    </div>
-    <div class="field">
-      <label>Adresse</label>
-      <input type="text" [(ngModel)]="form.address" name="address" />
-    </div>
-
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Mise à jour...' : 'Enregistrer' }}
-    </button>
-  </form>
-</div>
+</section>

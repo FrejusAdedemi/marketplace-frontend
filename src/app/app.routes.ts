@@ -1,3 +1,5 @@
+import { CartComponent } from './pages/cart/cart.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth-guard';
 import { ProductCatalogComponent } from './pages/product-catalog/product-catalog.component';
@@ -31,6 +33,9 @@ export const routes: Routes = [
   { path: 'products/new', component: ProductFormComponent },
   { path: 'products', component: ProductCatalogComponent },
   { path: 'products/:id', component: ProductDetailComponent },
+
+{ path: 'cart', component: CartComponent },
+{ path: 'orders', component: OrdersComponent },
 
   { path: '**', redirectTo: 'home' }
 ];

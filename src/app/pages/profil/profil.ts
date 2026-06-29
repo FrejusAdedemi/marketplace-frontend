@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
+
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-profil',
@@ -13,44 +15,59 @@ import { CommonModule } from '@angular/common';
 })
 export class Profil implements OnInit {
   user: any = null;
-  form = { first_name: '', last_name: '', phone: '', address: '' };
+
+  form = {
+    first_name: '',
+    last_name: '',
+    phone: '',
+    address: ''
+  };
+
   error = '';
   success = '';
   loading = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    const localProfile = this.authService.getLocalProfile();
+
+    this.form.first_name = localProfile.first_name || '';
+    this.form.last_name = localProfile.last_name || '';
+    this.form.phone = localProfile.phone || '';
+    this.form.address = localProfile.address || '';
+
     this.authService.getMe().subscribe({
-      next: (data) => {
-        this.user = data;
-        this.form.first_name = data.first_name || '';
-        this.form.last_name  = data.last_name  || '';
-        this.form.phone      = data.phone      || '';
-        this.form.address    = data.address    || '';
-      },
-      error: () => this.router.navigate(['/login'])
-    });
-  }
-
-  onUpdate() {
-    this.error = '';
-    this.success = '';
-    this.loading = true;
-
-    this.authService.updateMe(this.form).subscribe({
-      next: () => {
-        this.loading = false;
-        this.success = 'Profil mis à jour !';
+      next: (data: any) => {
+        this.user = data?.user ?? data;
       },
       error: () => {
-        this.loading = false;
-        this.error = 'Erreur lors de la mise à jour';
+        this.router.navigate(['/login']);
       }
     });
   }
 
-  onLogout() {
+  onUpdate(): void {
+    this.error = '';
+    this.success = '';
+    this.loading = true;
+
+    this.authService.updateMe(this.form)
+      .pipe(finalize(() => this.loading = false))
+      .subscribe({
+        next: () => {
+          this.success = 'Profil mis à jour !';
+        },
+        error: () => {
+          this.error = 'Erreur lors de la mise à jour';
+        }
+      });
+  }
+
+  onLogout(): void {
     this.authService.logout();
   }
 }

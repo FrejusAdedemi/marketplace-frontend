@@ -1,0 +1,92 @@
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: 76px;
+  padding: 0 7%;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid #d7eadf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 8px 28px rgba(20, 90, 50, 0.06);
+}
+
+.logo {
+  font-size: 1.55rem;
+  font-weight: 950;
+  color: #0f2f21;
+  text-decoration: none;
+  letter-spacing: -0.04em;
+}
+
+.logo::before {
+  content: "🛒";
+  margin-right: 0.4rem;
+}
+
+.nav-links,
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-links a,
+.auth-links a {
+  padding: 0.65rem 0.8rem;
+  border-radius: 12px;
+  color: #123524;
+  text-decoration: none;
+  font-weight: 750;
+  transition: 0.18s ease;
+}
+
+.nav-links a:hover,
+.auth-links a:hover,
+.nav-links a.active {
+  background: #ecf8f0;
+  color: #1f8f4d;
+}
+
+.role-badge {
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: #ecf8f0;
+  color: #1f8f4d;
+  font-weight: 850;
+  border: 1px solid #cfe5d8;
+}
+
+.register,
+.auth-links button {
+  padding: 0.72rem 1rem;
+  border-radius: 13px;
+  background: #1f8f4d;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  font-weight: 850;
+  box-shadow: 0 8px 18px rgba(31, 143, 77, 0.18);
+}
+
+.login {
+  border: 1px solid #cfe5d8;
+  background: white;
+}
+
+@media (max-width: 1000px) {
+  .main-header {
+    height: auto;
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .nav-links,
+  .auth-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

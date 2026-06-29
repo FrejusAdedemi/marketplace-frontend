@@ -1,23 +1,45 @@
-<div class="container">
-  <h2>Connexion</h2>
-
-  <div class="error" *ngIf="error">{{ error }}</div>
-
-  <form (ngSubmit)="onSubmit()">
-    <div class="field">
-      <label>Email</label>
-      <input type="email" [(ngModel)]="email" name="email" required />
+<section class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Connexion</h1>
+      <p>Connectez-vous pour accéder à votre compte marketplace.</p>
     </div>
 
-    <div class="field">
-      <label>Mot de passe</label>
-      <input type="password" [(ngModel)]="password" name="password" required />
-    </div>
+    <div class="error" *ngIf="error">{{ error }}</div>
 
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Connexion...' : 'Se connecter' }}
-    </button>
-  </form>
+    <form (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input
+          id="login-email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          autocomplete="email"
+          required
+        />
+      </div>
 
-  <p>Pas encore de compte ? <a routerLink="/register">S'inscrire</a></p>
-</div>
+      <div class="field">
+        <label for="login-password">Mot de passe</label>
+        <input
+          id="login-password"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Connexion...' : 'Se connecter' }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Pas encore de compte ?
+      <a routerLink="/register">S'inscrire</a>
+    </p>
+  </div>
+</section>
